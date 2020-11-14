@@ -5,3 +5,14 @@
 body {
   background-color: $favColor;
 }
+
+.board-card {
+  width: 18rem;
+  margin: 20px;
+}
+
+.BoardContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
