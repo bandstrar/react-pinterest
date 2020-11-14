@@ -1,9 +1,7 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
-  Link,
 } from 'react-router-dom';
 import Home from '../views/Home';
 import Boards from '../views/Boards';
@@ -15,7 +13,6 @@ import PinForm from '../views/PinForm';
 import NotFound from '../views/NotFound';
 
 const Routes = ({ authed }) => (
-<Router>
           <Switch>
             <Route exact path='/' component={() => <Home authed={authed} />} />
             <Route exact path='/boards' component={() => <Boards authed={authed} />} />
@@ -26,7 +23,6 @@ const Routes = ({ authed }) => (
             <Route exact path='/pin-form' component={() => <PinForm authed={authed} />} />
             <Route component={NotFound} />
           </Switch>
-        </Router>
 );
 
 export default Routes;
