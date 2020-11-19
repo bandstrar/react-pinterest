@@ -26,14 +26,15 @@ const createBoard = (data) => new Promise((resolve, reject) => {
 });
 
 const updateBoard = (data) => new Promise((resolve, reject) => {
-  axios.patch(`${baseUrl}/boards/${data.firebaseKey}`, data)
-    .then((response) => {
-      resolve(response);
-    }).catch((error) => reject(error));
+  axios.patch(`${baseUrl}/boards/${data.firebaseKey}.json`, data)
+    .then(resolve)
+    .catch((error) => reject(error));
 });
 
 const deleteBoard = (boardId) => axios.delete(`${baseUrl}/boards/${boardId}.json`);
 
+const deletePinBoard = (firebaseKey) => axios.delete(`${baseUrl}/pin-boards/${firebaseKey}.json`);
+
 export default {
-  getAllUserBoards, getSingleBoard, createBoard, updateBoard, deleteBoard,
+  getAllUserBoards, getSingleBoard, createBoard, updateBoard, deleteBoard, deletePinBoard,
 };
