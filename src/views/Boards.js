@@ -25,6 +25,19 @@ export default class Boards extends React.Component {
     });
   }
 
+  removeBoard = (e) => {
+    const removedBoard = this.state.boards.filter((board) => board.firebaseKey !== e.target.id);
+
+    this.setState({
+      boards: removedBoard,
+    });
+
+    boardData.deleteBoard(e.target.id)
+      .then(() => {
+        this.getBoards();
+      });
+  }
+
   setLoading = () => {
     this.timer = setInterval(() => {
       this.setState({ loading: false });
@@ -38,7 +51,7 @@ export default class Boards extends React.Component {
   render() {
     const { boards, loading } = this.state;
     const showBoards = () => (
-      boards.map((board) => <BoardsCard key={board.firebaseKey} board={board} />)
+      boards.map((board) => <BoardsCard key={board.firebaseKey} board={board} removeBoard={this.removeBoard} />)
     );
     return (
       <>
