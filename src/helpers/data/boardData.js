@@ -32,6 +32,8 @@ const updateBoard = (data) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const deleteBoard = (boardId) => axios.delete(`${baseUrl}/boards/${boardId}.json`);
+
 export default {
-  getAllUserBoards, getSingleBoard, createBoard, updateBoard,
+  getAllUserBoards, getSingleBoard, createBoard, updateBoard, deleteBoard,
 };

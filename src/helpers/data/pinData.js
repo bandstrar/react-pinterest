@@ -14,4 +14,10 @@ const getPin = (pinId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getPin, getBoardPins };
+const getAllPins = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/pins.json`).then((response) => {
+    resolve(Object.values(response.data));
+  }).catch((error) => reject(error));
+});
+
+export default { getPin, getBoardPins, getAllPins };
