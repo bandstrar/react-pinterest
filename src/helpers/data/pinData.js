@@ -20,4 +20,19 @@ const getAllPins = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getPin, getBoardPins, getAllPins };
+const createPin = (data) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/pins.json`, data)
+    .then((response) => {
+      const update = { firebaseKey: response.data.name };
+      axios.patch(`${baseUrl}/pins/${response.data.name}.json`, update)
+        .then(() => {
+          resolve(response);
+        });
+    }).catch((error) => reject(error));
+});
+
+const deletePin = (pinId) => axios.delete(`${baseUrl}/pins/${pinId}.json`);
+
+export default {
+  getPin, getBoardPins, getAllPins, createPin, deletePin,
+};

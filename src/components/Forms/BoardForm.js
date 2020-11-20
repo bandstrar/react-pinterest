@@ -92,7 +92,8 @@ class BoardForm extends Component {
               onChange={this.handleChange}
               />
               <button>Submit</button>
-        </form>);
+        </form>
+      );
     }
 }
 
