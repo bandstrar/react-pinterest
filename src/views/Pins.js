@@ -23,19 +23,6 @@ class Pins extends Component {
      });
    }
 
-   removePin = (e) => {
-     const removedPin = this.state.pins.filter((pin) => pin.firebaseKey !== e.target.id);
-
-     this.setState({
-       pins: removedPin,
-     });
-
-     pinData.deletePin(e.target.id)
-       .then(() => {
-         this.getPins();
-       });
-   }
-
    setLoading = () => {
      this.timer = setInterval(() => {
        this.setState({ loading: false });
