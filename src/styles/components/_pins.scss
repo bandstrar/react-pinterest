@@ -1,5 +1,5 @@
 .pin-detail-image {
-    width: 60vw
+    width: 50vw
 }
 
 .single-pin-description {
@@ -9,4 +9,12 @@
 
 .pin-details-name {
     font-family: $favFont;
+}
+
+.card-img-top {
+    width: 300px;
+}
+
+.card {
+    align-items: center;
 }
