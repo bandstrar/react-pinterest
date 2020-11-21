@@ -32,7 +32,7 @@ class PinDetails extends Component {
      render() {
        const { pin } = this.state;
        return (
-            <div>
+            <div className="single-pin-view">
                 {(this.props.user.uid === pin.userId)
                 && <AppModal title={'Update Pin'} buttonLabel={'Update Pin'}>
                     {Object.keys(pin).length && <PinForm pin={pin} onUpdate={this.getPin} />}
@@ -44,7 +44,9 @@ class PinDetails extends Component {
           {pin.description}
         </p>
                 {(this.props.user.uid === pin.userId)
-                && <button className='btn btn-danger m-2' id={pin.firebaseKey} onClick={this.removePin}>Delete</button>
+                && <>
+                <button className='btn btn-danger m-2' id={pin.firebaseKey} onClick={this.removePin}>Delete</button>
+                </>
        }
             </div>
        );

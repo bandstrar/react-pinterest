@@ -18,3 +18,13 @@
 .card {
     align-items: center;
 }
+
+.pin-to-board {
+    width: 25vw;
+}
+
+.board-select-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}

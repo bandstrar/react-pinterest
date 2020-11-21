@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../views/Home';
 import Boards from '../views/Boards';
 import PinDetails from '../views/PinDetails';
-import PinForm from '../views/PinForm';
 import Pins from '../views/Pins';
 import SingleBoard from '../views/SingleBoard';
 import NotFound from '../views/NotFound';
