@@ -8,6 +8,12 @@ const getBoardPins = (boardId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const getAllBoardPins = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/pin-boards.json`).then((response) => {
+    resolve(Object.values(response.data));
+  }).catch((error) => reject(error));
+});
+
 const getPin = (pinId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/pins/${pinId}.json`).then((response) => {
     resolve(response.data);
@@ -37,10 +43,20 @@ const updatePin = (data) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const createBoardPin = (data) => axios.post(`${baseUrl}/pin-boards.json`, data);
+const createBoardPin = (data) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/pin-boards.json`, data)
+    .then((response) => {
+      axios.patch(`${baseUrl}/pin-boards/${response.data.name}.json`, { firebaseKey: response.data.name })
+        .then(() => {
+          resolve(response);
+        });
+    }).catch((error) => reject(error));
+});
 
 const deletePin = (pinId) => axios.delete(`${baseUrl}/pins/${pinId}.json`);
 
+const deleteBoardPins = (fbKey) => axios.delete(`${baseUrl}/pin-boards/${fbKey}.json`);
+
 export default {
-  getPin, getBoardPins, getAllPins, createPin, deletePin, updatePin, createBoardPin,
+  getPin, getBoardPins, getAllPins, createPin, deletePin, updatePin, createBoardPin, deleteBoardPins, getAllBoardPins,
 };
