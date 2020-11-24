@@ -5,6 +5,7 @@ import Loader from '../components/Loader';
 import getUid from '../helpers/data/authData';
 import BoardForm from '../components/Forms/BoardForm';
 import AppModal from '../components/AppModal';
+import pinData from '../helpers/data/pinData';
 
 export default class Boards extends React.Component {
   state = {
@@ -31,10 +32,17 @@ export default class Boards extends React.Component {
     this.setState({
       boards: removedBoard,
     });
-
-    boardData.deleteBoard(e.target.id)
-      .then(() => {
-        this.getBoards();
+    pinData.getBoardPins(e.target.id)
+      .then((response) => {
+        response.forEach((boardPin) => {
+          pinData.deleteBoardPins(boardPin.firebaseKey)
+            .then(() => {
+              boardData.deleteBoard(e.target.id)
+                .then(() => {
+                  this.getBoards();
+                });
+            });
+        });
       });
   }
 

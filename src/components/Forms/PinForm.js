@@ -68,6 +68,9 @@ class PinForm extends Component {
           pinData.updatePin(this.state)
             .then(() => {
               this.props.onUpdate(this.props.pin.firebaseKey);
+            }).then(() => {
+              this.state.boardId !== ''
+                  && pinData.createBoardPin({ pinId: this.state.firebaseKey, userId: this.state.userId, boardId: this.state.boardId });
             });
         }
       }
