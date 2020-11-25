@@ -31,10 +31,18 @@ const updateBoard = (data) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const searchBoards = (userId, searchTerm) => new Promise((resolve, reject) => {
+  getAllUserBoards(userId)
+    .then((response) => {
+      const searched = response.filter((board) => board.name.toLowerCase().includes(searchTerm));
+      resolve(searched);
+    }).catch((error) => reject(error));
+});
+
 const deleteBoard = (boardId) => axios.delete(`${baseUrl}/boards/${boardId}.json`);
 
 const deletePinBoard = (firebaseKey) => axios.delete(`${baseUrl}/pin-boards/${firebaseKey}.json`);
 
 export default {
-  getAllUserBoards, getSingleBoard, createBoard, updateBoard, deleteBoard, deletePinBoard,
+  getAllUserBoards, getSingleBoard, createBoard, updateBoard, deleteBoard, deletePinBoard, searchBoards,
 };

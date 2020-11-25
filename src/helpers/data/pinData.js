@@ -53,10 +53,18 @@ const createBoardPin = (data) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const searchPins = (searchTerm) => new Promise((resolve, reject) => {
+  getAllPins()
+    .then((response) => {
+      const searched = response.filter((pin) => pin.name.toLowerCase().includes(searchTerm));
+      resolve(searched);
+    }).catch((error) => reject(error));
+});
+
 const deletePin = (pinId) => axios.delete(`${baseUrl}/pins/${pinId}.json`);
 
 const deleteBoardPins = (fbKey) => axios.delete(`${baseUrl}/pin-boards/${fbKey}.json`);
 
 export default {
-  getPin, getBoardPins, getAllPins, createPin, deletePin, updatePin, createBoardPin, deleteBoardPins, getAllBoardPins,
+  getPin, getBoardPins, getAllPins, createPin, deletePin, updatePin, createBoardPin, deleteBoardPins, getAllBoardPins, searchPins,
 };
