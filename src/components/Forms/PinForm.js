@@ -73,7 +73,7 @@ class PinForm extends Component {
                 pinData.getBoardPins(this.state.boardId)
                   .then((response) => {
                     const preventDupes = response.filter((name) => name.pinId === this.state.firebaseKey);
-                    preventDupes.length === 0
+                    preventDupes === []
                     && pinData.createBoardPin({ pinId: this.state.firebaseKey, userId: this.state.userId, boardId: this.state.boardId });
                   });
               }
