@@ -35,14 +35,12 @@ export default class Boards extends React.Component {
     pinData.getBoardPins(e.target.id)
       .then((response) => {
         response.forEach((boardPin) => {
-          pinData.deleteBoardPins(boardPin.firebaseKey)
-            .then(() => {
-              boardData.deleteBoard(e.target.id)
-                .then(() => {
-                  this.getBoards();
-                });
-            });
+          pinData.deleteBoardPins(boardPin.firebaseKey);
         });
+      });
+    boardData.deleteBoard(e.target.id)
+      .then(() => {
+        this.getBoards();
       });
   }
 
