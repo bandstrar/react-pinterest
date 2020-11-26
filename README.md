@@ -10,7 +10,7 @@ When the user visits the application, they'll see a splash page that prompts the
 
 ![Image](https://i.imgur.com/Mk6QnAf.png)
 
-The user can also delete and update their boards. Deleting a board will remove all of the pins from that board, but not delete the pin itself.
+The user can also delete and update their boards. Deleting a board will remove all of the pins from that board, but not delete the pin itself. The user can also search for a board or pin by name in the search bar.
 
 ## Technologies Used
 
