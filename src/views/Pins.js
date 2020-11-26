@@ -33,7 +33,7 @@ class Pins extends Component {
      const { pins, loading } = this.state;
      const { user } = this.props;
      const showPins = () => (
-       pins.map((pin) => (pin.userId === user.uid) && <PinsCard key={pin.firebaseKey} pin={pin} removePin={this.removePin} />)
+       pins.length && pins.map((pin) => (pin.userId === user.uid) && <PinsCard key={pin.firebaseKey} pin={pin} removePin={this.removePin} />)
      );
      return (
       <>
